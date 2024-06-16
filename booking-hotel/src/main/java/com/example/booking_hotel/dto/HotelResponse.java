@@ -1,13 +1,13 @@
-package com.example.booking_hotel.entity;
+package com.example.booking_hotel.dto;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-public class Hotel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor
+@AllArgsConstructor
+public class HotelResponse {
     private Long id;
     private String name;
     private String title;
