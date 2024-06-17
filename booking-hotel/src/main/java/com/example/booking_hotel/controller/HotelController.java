@@ -41,7 +41,7 @@ public class HotelController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         hotelService.delete(id);
     }
 
