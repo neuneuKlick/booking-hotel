@@ -1,0 +1,24 @@
+{
+  "hotels": [
+    {
+      "id": 2,
+      "name": "Ink",
+      "title": "Wellcome to Ink Hotel",
+      "city": "Dubai",
+      "address": "Jaddaf Waterfront Dubai 20, Bur Dubai, Dubai, United Arab Emirates",
+      "location": 7.6,
+      "rating": 8.0,
+      "reviews": 3552
+    },
+    {
+      "id": 3,
+      "name": "Hotel New Imperial",
+      "title": "Wellcome to Hotel New Imperial",
+      "city": "Mumbai",
+      "address": "Apsara cinema, Near Minerva talkies , Ali Bhai Premji Marg, Grant Road(E) Mumbai - 400007, 400007 Mumbai, India",
+      "location": 8.2,
+      "rating": 9.2,
+      "reviews": 40
+    }
+  ]
+}

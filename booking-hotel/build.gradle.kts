@@ -26,6 +26,7 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("net.javacrumbs.json-unit:json-unit:2.38.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
