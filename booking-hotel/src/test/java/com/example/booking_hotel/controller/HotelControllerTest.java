@@ -66,7 +66,7 @@ public class HotelControllerTest extends AbstractControllerTest {
                 40
         )));
 
-        
+
     }
 
 }

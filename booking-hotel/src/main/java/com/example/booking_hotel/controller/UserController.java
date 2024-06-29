@@ -1,7 +1,5 @@
 package com.example.booking_hotel.controller;
 
-import com.example.booking_hotel.dto.HotelResponse;
-import com.example.booking_hotel.dto.HotelUpsertRequest;
 import com.example.booking_hotel.dto.UserResponse;
 import com.example.booking_hotel.dto.UserUpsertRequest;
 import com.example.booking_hotel.entity.RoleType;

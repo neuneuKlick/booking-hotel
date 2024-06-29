@@ -1,13 +1,10 @@
 package com.example.booking_hotel.service;
 
-import com.example.booking_hotel.dto.HotelResponse;
-import com.example.booking_hotel.dto.HotelUpsertRequest;
 import com.example.booking_hotel.dto.RoomResponse;
 import com.example.booking_hotel.dto.RoomUpsertRequest;
 import com.example.booking_hotel.entity.Hotel;
 import com.example.booking_hotel.entity.Room;
 import com.example.booking_hotel.exception.NotFoundException;
-import com.example.booking_hotel.mapper.HotelMapper;
 import com.example.booking_hotel.mapper.RoomMapper;
 import com.example.booking_hotel.repository.HotelRepository;
 import com.example.booking_hotel.repository.RoomRepository;
