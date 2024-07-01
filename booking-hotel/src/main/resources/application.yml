@@ -1,12 +1,9 @@
 spring:
-  main:
-    allow-circular-references: true
-  jpa:
-    generate-ddl: true
-
   datasource:
     url: jdbc:postgresql://localhost:5433/booking_db
     username: postgres
     password: postgres
-    hikari:
-      schema: booking_schema
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.xml
