@@ -2,11 +2,13 @@ package com.example.booking_hotel.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Room {
 
