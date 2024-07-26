@@ -20,7 +20,7 @@ public class User {
     private String email;
     private String password;
 
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "role", joinColumns = @JoinColumn(name = "user_id"))
     @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<RoleType> roles = new HashSet<>();

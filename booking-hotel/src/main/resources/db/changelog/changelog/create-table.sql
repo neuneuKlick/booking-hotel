@@ -9,7 +9,8 @@ CREATE TABLE "user"
     id          SERIAL PRIMARY KEY,
     username    VARCHAR(150) UNIQUE NOT NULL,
     email       VARCHAR(150) UNIQUE NOT NULL,
-    password    VARCHAR(150) NOT NULL
+    password    VARCHAR(150) NOT NULL,
+    role_id     INTEGER REFERENCES "role" (id)
 );
 
 CREATE TABLE "hotel"

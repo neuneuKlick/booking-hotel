@@ -2,9 +2,9 @@ INSERT INTO "role" VALUES
     (1, 'ROLE_USER'),
     (2, 'ROLE_ADMIN');
 
-INSERT INTO "user" VALUES
-    (1, 'Tom', 'tom21@gmail.com', '12345'),
-    (2, 'John','johnsilver@gmail.com', '12345');
+INSERT INTO "user" (id, username, email, password, role_id) VALUES
+    (1, 'Tom', 'tom21@gmail.com', '12345', 1),
+    (2, 'John','johnsilver@gmail.com', '12345', 2);
 
 INSERT INTO "hotel" (id, name, title, city, address, location, rating, reviews) VALUES
     (1, 'Wochenbrunner Chalets', 'Wellcome to ochenbrunner Chalets', 'Ellmau', 'Wochenbrunnweg, 6352 Ellmau, Austria', 9.0, 9.2, 143),
