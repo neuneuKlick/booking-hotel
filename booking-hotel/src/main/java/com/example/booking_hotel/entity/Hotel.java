@@ -3,6 +3,8 @@ package com.example.booking_hotel.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -19,4 +21,8 @@ public class Hotel {
     private double location;
     private double rating;
     private int reviews;
+
+    @OneToMany
+    @JoinColumn(name = "hotel_id")
+    private List<Room> rooms;
 }

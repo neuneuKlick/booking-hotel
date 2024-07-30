@@ -22,7 +22,8 @@ public class Room {
     private int numberOfGuests;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
+
     @ManyToOne
-    @JoinColumn(name = "hotel_id")
+    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     private Hotel hotel;
 }

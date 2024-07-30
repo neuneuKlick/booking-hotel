@@ -1,16 +1,16 @@
-CREATE TABLE "role"
-(
-    id          SERIAL PRIMARY KEY,
-    authorities VARCHAR(50)
-);
-
 CREATE TABLE "user"
 (
     id          SERIAL PRIMARY KEY,
     username    VARCHAR(150) UNIQUE NOT NULL,
     email       VARCHAR(150) UNIQUE NOT NULL,
-    password    VARCHAR(150) NOT NULL,
-    role_id     INTEGER REFERENCES "role" (id)
+    password    VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE "role"
+(
+    id          SERIAL PRIMARY KEY,
+    authorities VARCHAR(50),
+    user_id     INTEGER REFERENCES "user" (id)
 );
 
 CREATE TABLE "hotel"
@@ -34,5 +34,6 @@ CREATE TABLE "room"
     price               INTEGER NOT NULL,
     number_of_guests    INTEGER NOT NULL,
     check_in_date       TIMESTAMP NOT NULL,
-    check_out_date      TIMESTAMP NOT NULL
+    check_out_date      TIMESTAMP NOT NULL,
+    hotel_id            INTEGER REFERENCES "hotel" (id) NOT NULL
 )

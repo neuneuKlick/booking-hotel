@@ -1,10 +1,13 @@
 package com.example.booking_hotel.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -20,8 +23,6 @@ public class User {
     private String email;
     private String password;
 
-    @JoinTable(name = "role", joinColumns = @JoinColumn(name = "user_id"))
-    @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<RoleType> roles = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Role> roles = new ArrayList<>();
 }
