@@ -2,10 +2,6 @@ INSERT INTO "user" (id, username, email, password) VALUES
     (1, 'Tom', 'tom21@gmail.com', '12345'),
     (2, 'John','johnsilver@gmail.com', '12345');
 
-INSERT INTO "role" (id, authorities, user_id)VALUES
-    (1, 'ROLE_USER', 1),
-    (2, 'ROLE_ADMIN', 2);
-
 INSERT INTO "hotel" (id, name, title, city, address, location, rating, reviews) VALUES
     (1, 'Wochenbrunner Chalets', 'Wellcome to ochenbrunner Chalets', 'Ellmau', 'Wochenbrunnweg, 6352 Ellmau, Austria', 9.0, 9.2, 143),
     (2, 'Hotel New Imperial', 'Wellcome to Hotel New Imperial', 'Mumbai', 'Apsara cinema, Near Minerva talkies , Ali Bhai Premji Marg, Grant Road(E) Mumbai - 400007, 400007 Mumbai, India', 8.2, 9.0, 40);

@@ -2,21 +2,18 @@ package com.example.booking_hotel.service;
 
 import com.example.booking_hotel.dto.UserResponse;
 import com.example.booking_hotel.dto.UserUpsertRequest;
-import com.example.booking_hotel.entity.Role;
 import com.example.booking_hotel.entity.RoleType;
 import com.example.booking_hotel.entity.User;
-import com.example.booking_hotel.exception.BadRequestException;
 import com.example.booking_hotel.mapper.UserMapper;
 import com.example.booking_hotel.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -36,22 +33,17 @@ public class UserService {
         return userResponse;
     }
 
-    public UserResponse create(UserUpsertRequest request, RoleType roleType) {
+    public UserResponse create(UserUpsertRequest request, List<RoleType> roleTypes) {
+
+        findByUsername(request.getUsername());
+
+        userRepository.findByUsernameAndEmail(request.getUsername(), request.getEmail());
 
         User user = userMapper.userUpsertRequestToUser(request);
-
-        userRepository.findByUsername(user.getUsername())
-                .orElseThrow(() -> new EntityNotFoundException("Пользователь не найден"));
-
-        userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new EntityNotFoundException("Пользователь не найден"));
-
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
-
-        Role role = new Role();
-        role.setAuthorities(roleType);
-        role.setUser(user);
+        Set<RoleType> roleTypeSet = new HashSet<>(roleTypes);
+        user.setRoles(roleTypeSet);
 
         userRepository.save(user);
 

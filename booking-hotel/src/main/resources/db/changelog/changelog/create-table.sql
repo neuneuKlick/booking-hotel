@@ -6,13 +6,6 @@ CREATE TABLE "user"
     password    VARCHAR(150) NOT NULL
 );
 
-CREATE TABLE "role"
-(
-    id          SERIAL PRIMARY KEY,
-    authorities VARCHAR(50),
-    user_id     INTEGER REFERENCES "user" (id)
-);
-
 CREATE TABLE "hotel"
 (
     id          SERIAL PRIMARY KEY,

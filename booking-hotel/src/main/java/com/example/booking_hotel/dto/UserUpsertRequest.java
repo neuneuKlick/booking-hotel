@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserUpsertRequest {
+    private Long id;
     private String username;
     private String email;
     private String password;

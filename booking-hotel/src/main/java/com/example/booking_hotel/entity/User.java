@@ -1,18 +1,16 @@
 package com.example.booking_hotel.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
@@ -23,6 +21,7 @@ public class User {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Role> roles = new ArrayList<>();
+    @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<RoleType> roles = new HashSet<>();
 }

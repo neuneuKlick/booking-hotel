@@ -25,8 +25,8 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse create(@RequestBody UserUpsertRequest request,
-                               @RequestParam(name = "roleType") RoleType roleType) {
-        return userService.create(request, roleType);
+                               @RequestParam List<RoleType> roleTypes) {
+        return userService.create(request, roleTypes);
     }
 
 }
