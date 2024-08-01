@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,10 +22,11 @@ public class Room {
     private String type;
     private int price;
     private int numberOfGuests;
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     private Hotel hotel;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 }

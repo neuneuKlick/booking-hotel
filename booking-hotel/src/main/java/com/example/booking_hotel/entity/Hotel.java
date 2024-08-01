@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "hotels", schema = "public")
+@Table(name = "hotels")
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

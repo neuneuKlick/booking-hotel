@@ -3,14 +3,16 @@ package com.example.booking_hotel.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users", schema = "public")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -22,4 +24,7 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private RoleType roleType;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 }

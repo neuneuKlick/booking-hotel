@@ -32,8 +32,6 @@ public class RoomService {
         room.setType(request.getType());
         room.setPrice(request.getPrice());
         room.setNumberOfGuests(request.getNumberOfGuests());
-        room.setCheckInDate(request.getCheckInDate());
-        room.setCheckOutDate(request.getCheckOutDate());
 
         Hotel hotel = hotelRepository.findById(hotelId)
                 .orElseThrow(() -> new NotFoundException("Отель не найден!"));

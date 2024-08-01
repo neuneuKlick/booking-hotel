@@ -27,7 +27,14 @@ CREATE TABLE rooms
     type                VARCHAR(50) NOT NULL,
     price               INTEGER NOT NULL,
     number_of_guests    INTEGER NOT NULL,
-    check_in_date       TIMESTAMP NOT NULL,
-    check_out_date      TIMESTAMP NOT NULL,
-    hotel_id            INTEGER REFERENCES hotels (id) NOT NULL
+    hotel_id            INTEGER REFERENCES hotels (id) ON DELETE CASCADE
+);
+
+CREATE TABLE bookings
+(
+    id                  SERIAL PRIMARY KEY,
+    check_in_date       TIMESTAMP,
+    check_out_date      TIMESTAMP,
+    room_id             INTEGER REFERENCES rooms (id) ON DELETE CASCADE,
+    user_id             INTEGER REFERENCES users (id) ON DELETE CASCADE
 )
