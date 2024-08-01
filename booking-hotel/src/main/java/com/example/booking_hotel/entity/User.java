@@ -10,18 +10,16 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "users", schema = "public")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
     private String username;
     private String email;
     private String password;
 
-    @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<RoleType> roles = new HashSet<>();
+    @Enumerated(value = EnumType.STRING)
+    private RoleType roleType;
 }

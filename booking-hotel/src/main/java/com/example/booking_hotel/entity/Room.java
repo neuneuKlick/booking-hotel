@@ -1,15 +1,15 @@
 package com.example.booking_hotel.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "rooms", schema = "public")
 public class Room {
 
     @Id

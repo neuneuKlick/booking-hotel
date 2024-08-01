@@ -5,11 +5,11 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "hotels", schema = "public")
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

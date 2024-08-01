@@ -33,17 +33,19 @@ public class UserService {
         return userResponse;
     }
 
-    public UserResponse create(UserUpsertRequest request, List<RoleType> roleTypes) {
+    public UserResponse create(UserUpsertRequest request, RoleType roleType) {
 
-        findByUsername(request.getUsername());
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new EntityNotFoundException("Email уже зарегистрирован");
+        }
 
-        userRepository.findByUsernameAndEmail(request.getUsername(), request.getEmail());
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new EntityNotFoundException("Username уже зарегистрирован");
+        }
 
         User user = userMapper.userUpsertRequestToUser(request);
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
-        Set<RoleType> roleTypeSet = new HashSet<>(roleTypes);
-        user.setRoles(roleTypeSet);
+
+        user.setRoleType(roleType);
 
         userRepository.save(user);
 

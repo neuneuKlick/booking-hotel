@@ -1,12 +1,13 @@
-CREATE TABLE "user"
+CREATE TABLE users
 (
     id          SERIAL PRIMARY KEY,
     username    VARCHAR(150) UNIQUE NOT NULL,
     email       VARCHAR(150) UNIQUE NOT NULL,
-    password    VARCHAR(150) NOT NULL
+    password    VARCHAR(150) NOT NULL,
+    role_type   VARCHAR(50)
 );
 
-CREATE TABLE "hotel"
+CREATE TABLE hotels
 (
     id          SERIAL PRIMARY KEY,
     name        VARCHAR(150) UNIQUE NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE "hotel"
     reviews     INTEGER NOT NULL
 );
 
-CREATE TABLE "room"
+CREATE TABLE rooms
 (
     id                  SERIAL PRIMARY KEY,
     name                VARCHAR(50) NOT NULL,
@@ -28,5 +29,5 @@ CREATE TABLE "room"
     number_of_guests    INTEGER NOT NULL,
     check_in_date       TIMESTAMP NOT NULL,
     check_out_date      TIMESTAMP NOT NULL,
-    hotel_id            INTEGER REFERENCES "hotel" (id) NOT NULL
+    hotel_id            INTEGER REFERENCES hotels (id) NOT NULL
 )
