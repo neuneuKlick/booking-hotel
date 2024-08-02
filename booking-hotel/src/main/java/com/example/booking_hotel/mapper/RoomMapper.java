@@ -12,8 +12,7 @@ public interface RoomMapper {
 
     Room roomUpsertRequestToRoom(RoomUpsertRequest request);
 
-    @Mapping(source = "id", target = "id")
-    Room roomUpsertRequestToRoom(RoomUpsertRequest request, Long id);
+    Room roomUpsertRequestToRoom(RoomUpsertRequest request, Long roomsId);
 
     Room roomUpsertRequestToRoom(Long id);
 

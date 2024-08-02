@@ -9,10 +9,12 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomUpsertRequest {
-    private String name;
-    private String description;
-    private String type;
-    private int price;
-    private int numberOfGuests;
+public class BookingUpsertRequest {
+
+
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private Long roomId;
+    private Long userId;
+
 }

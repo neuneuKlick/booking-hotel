@@ -12,8 +12,7 @@ public interface HotelMapper {
 
     Hotel hotelUpsertRequestToHotel(HotelUpsertRequest request);
 
-    @Mapping(source = "id", target = "id")
-    Hotel hotelUpsertRequestToHotel(HotelUpsertRequest request, Long id);
+    Hotel hotelUpsertRequestToHotel(HotelUpsertRequest request, Long hotelId);
 
     Hotel hotelUpsertRequestToHotel(Long id);
 
