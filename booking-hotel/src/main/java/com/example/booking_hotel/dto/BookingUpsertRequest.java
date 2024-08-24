@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -12,8 +13,8 @@ import java.time.LocalDate;
 public class BookingUpsertRequest {
 
 
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
+    private Date checkInDate;
+    private Date checkOutDate;
     private Long roomId;
     private Long userId;
 

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -19,8 +20,10 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
+    @Column(name = "check_in_date", nullable = false)
+    private Date checkInDate;
+    @Column(name = "check_out_date", nullable = false)
+    private Date checkOutDate;
 
     @ManyToOne
     @JoinColumn(name = "room_id")

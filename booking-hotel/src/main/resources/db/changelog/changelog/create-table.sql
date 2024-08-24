@@ -33,8 +33,8 @@ CREATE TABLE rooms
 CREATE TABLE bookings
 (
     id                  SERIAL PRIMARY KEY,
-    check_in_date       TIMESTAMP,
-    check_out_date      TIMESTAMP,
+    check_in_date       DATE,
+    check_out_date      DATE,
     room_id             INTEGER REFERENCES rooms (id) ON DELETE CASCADE,
     user_id             INTEGER REFERENCES users (id) ON DELETE CASCADE
 )

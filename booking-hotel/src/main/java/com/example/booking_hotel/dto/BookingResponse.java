@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -14,8 +15,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BookingResponse {
 
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
+    private Date checkInDate;
+    private Date checkOutDate;
     private Long roomId;
     private Long userId;
 }

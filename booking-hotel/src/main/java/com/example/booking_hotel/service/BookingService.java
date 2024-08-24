@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,9 +31,10 @@ public class BookingService {
     }
 
     private boolean isInputDateUnCorrect(BookingUpsertRequest request) {
-        LocalDate inDate = request.getCheckInDate();
-        LocalDate outDate = request.getCheckOutDate();
-        return outDate.isBefore(inDate);
+        Date inDate = request.getCheckInDate();
+        Date outDate = request.getCheckOutDate();
+
+        return outDate.before(inDate);
     }
 
     private boolean isNotFoundRoom(BookingUpsertRequest request) {
@@ -62,60 +64,26 @@ public class BookingService {
     }
 
 
-//    private boolean isAvailableDates(BookingUpsertRequest request) {
-//
-//        LocalDate requestInDate = request.getCheckInDate();
-//
-//        Room requestRoom = roomRepository.findById(request.getRoomId()).get();
-//        List<BookingUnavailableDate> list = bookingUnavailableDateRepository.findAllByRoom(requestRoom);
-//
-//        for (BookingUnavailableDate bookingUnavailableDate : list) {
-//            if (requestInDate.isBefore(bookingUnavailableDate.getCheckOutDate())) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-
     public BookingResponse create(BookingUpsertRequest request) {
 
         if (isBadRequest(request)) {
             throw new BadRequestException("Запрос введён не верно");
         }
 
-        Booking booking = bookingMapper.bookingUpsertRequestToBooking(request);
-        List<Booking> list = bookingRepository.findBookingsByDates(
-                booking.getCheckInDate(),
-                booking.getCheckOutDate());
-//                booking.getRoom().getId());
+        List<Booking> list = bookingRepository.findBookingsByDates(request.getCheckInDate(), request.getCheckOutDate(), request.getRoomId());
 
         if (!list.isEmpty()) {
-            System.out.println("Свободных дат нет");
+            throw new BadRequestException("Не можем забронеировать комнату на запрашиваемую дату");
         } else {
             System.out.println("Бронирование успешно");
-        }
 
-        return bookingMapper.bookingToBookingResponse(booking);
+            Booking booking = bookingMapper.bookingUpsertRequestToBooking(request);
+            Booking save = bookingRepository.save(booking);
+
+            return bookingMapper.bookingToBookingResponse(save);
+        }
     }
 }
 
-//
-//
-//        if (isAvailableDates(request)) {
-//
-//            Booking booking = bookingMapper.bookingUpsertRequestToBooking(request);
-//
-//            BookingUnavailableDate newDate = new BookingUnavailableDate();
-//            newDate.setCheckInDate(request.getCheckInDate());
-//            newDate.setCheckOutDate(request.getCheckOutDate());
-//            newDate.setRoom(roomRepository.findById(request.getRoomId()).get());
-//
-//            bookingUnavailableDateRepository.save(newDate);
-//            bookingRepository.save(booking);
-//
-//            return bookingMapper.bookingToBookingResponse(booking);
-//        } else {
-//            throw new BadRequestException("Не можем забронеировать комнату на запрашиваемую дату");
-//        }
 
 
