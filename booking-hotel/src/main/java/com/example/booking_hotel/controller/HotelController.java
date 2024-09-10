@@ -42,4 +42,9 @@ public class HotelController {
         hotelService.delete(id);
     }
 
+    @PostMapping("/create-rating")
+    public HotelResponse createRating(@RequestBody HotelUpsertRequest request) {
+        return hotelService.createRating(request);
+    }
+
 }

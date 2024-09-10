@@ -58,5 +58,32 @@ public class HotelService {
         hotelRepository.deleteById(hotelMapper.hotelUpsertRequestToHotel(id).getId());
     }
 
+    public HotelResponse createRating(HotelUpsertRequest request) {
+        Hotel hotel = hotelRepository.findById(request.getId()).orElseThrow(() -> new NotFoundException("Отель не найден!"));
+
+        double rating;
+        double newMark;
+        int numberOfRating;
+        double totalRating;
+
+        rating = hotel.getRating();
+        numberOfRating = hotel.getReviews();
+        totalRating = rating * numberOfRating;
+
+        newMark = request.getRating();
+        totalRating = totalRating - rating + newMark;
+
+        rating = totalRating / numberOfRating;
+
+        numberOfRating++;
+
+        hotel.setRating(rating);
+        hotel.setReviews(numberOfRating);
+
+        hotelRepository.save(hotel);
+
+        return hotelMapper.hotelToHotelResponse(hotel);
+    }
+
 
 }

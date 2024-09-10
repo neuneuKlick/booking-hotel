@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HotelUpsertRequest {
+    private Long id;
     private String name;
     private String title;
     private String city;
