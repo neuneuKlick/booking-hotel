@@ -6,13 +6,24 @@ import com.example.booking_hotel.entity.RoleType;
 import com.example.booking_hotel.entity.User;
 import com.example.booking_hotel.mapper.UserMapper;
 import com.example.booking_hotel.repository.UserRepository;
+
+
+import com.example.booking_hotel.security.AppUserPrincipal;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -47,5 +58,13 @@ public class UserService {
 
         return userMapper.userToUserResponse(user);
 
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Пользователь не найден"));
+
+        return new AppUserPrincipal(user);
     }
 }

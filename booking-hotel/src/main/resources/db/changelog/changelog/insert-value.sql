@@ -1,6 +1,7 @@
-INSERT INTO users (username, email, password) VALUES
-    ('Tom', 'tom21@gmail.com', '12345'),
-    ('John','johnsilver@gmail.com', '12345');
+INSERT INTO users (username, email, password, role_type) VALUES
+    ('Tom', 'tom21@gmail.com', '12345', 'ROLE_USER'),
+    ('John','johnsilver@gmail.com', '12345', 'ROLE_ADMIN'),
+    ('User','user@gmail.com', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'ROLE_USER');
 
 INSERT INTO hotels (name, title, city, address, location, rating, reviews) VALUES
     ('Wochenbrunner Chalets', 'Wellcome to ochenbrunner Chalets', 'Ellmau', 'Wochenbrunnweg, 6352 Ellmau, Austria', 9.0, 9.2, 143),
