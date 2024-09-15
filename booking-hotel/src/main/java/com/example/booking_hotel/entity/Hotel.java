@@ -2,6 +2,7 @@ package com.example.booking_hotel.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@FieldNameConstants
 @Table(name = "hotels")
 public class Hotel {
     @Id

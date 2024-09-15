@@ -1,12 +1,13 @@
 package com.example.booking_hotel.service;
 
-import com.example.booking_hotel.dto.HotelResponse;
-import com.example.booking_hotel.dto.HotelUpsertRequest;
+import com.example.booking_hotel.dto.*;
 import com.example.booking_hotel.entity.Hotel;
 import com.example.booking_hotel.exception.NotFoundException;
 import com.example.booking_hotel.mapper.HotelMapper;
 import com.example.booking_hotel.repository.HotelRepository;
+import com.example.booking_hotel.repository.HotelSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -83,6 +84,16 @@ public class HotelService {
         hotelRepository.save(hotel);
 
         return hotelMapper.hotelToHotelResponse(hotel);
+    }
+
+    public HotelListResponse findByFilter(HotelPaginationRequest request) {
+        List<Hotel> hotelList = hotelRepository.findAll(HotelSpecification.filter(request),
+                PageRequest.of(
+                    request.getPageSize(),
+                    request.getPageNumber()
+                )).getContent();
+
+        return hotelMapper.hotelListToHotelListResponse(hotelList);
     }
 
 

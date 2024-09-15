@@ -1,7 +1,6 @@
 package com.example.booking_hotel.controller;
 
-import com.example.booking_hotel.dto.HotelResponse;
-import com.example.booking_hotel.dto.HotelUpsertRequest;
+import com.example.booking_hotel.dto.*;
 import com.example.booking_hotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,6 +23,11 @@ public class HotelController {
     @GetMapping("/{id}")
     public HotelResponse findById(@PathVariable Long id) {
         return hotelService.findById(id);
+    }
+
+    @GetMapping("/filter")
+    public HotelListResponse findByFilter(@RequestBody HotelPaginationRequest request) {
+        return hotelService.findByFilter(request);
     }
 
     @PostMapping
