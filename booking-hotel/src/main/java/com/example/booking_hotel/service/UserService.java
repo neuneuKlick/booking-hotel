@@ -27,6 +27,7 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final KafkaService kafkaService;
 
     public UserResponse findByUsername(String username) {
         User user = userRepository.findByUsername(username)
@@ -55,6 +56,8 @@ public class UserService implements UserDetailsService {
         user.setRoleType(roleType);
 
         userRepository.save(user);
+
+        kafkaService.sendMessageToKafkaWithTopicName(user);
 
         return userMapper.userToUserResponse(user);
 

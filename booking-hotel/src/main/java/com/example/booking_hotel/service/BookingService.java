@@ -25,6 +25,7 @@ public class BookingService {
     private final BookingMapper bookingMapper;
     private final RoomRepository roomRepository;
     private final UserRepository userRepository;
+    private final KafkaService kafkaService;
 
     public BookingListResponse findAll() {
         return bookingMapper.bookingListToBookingListResponse(bookingRepository.findAll());
@@ -79,6 +80,8 @@ public class BookingService {
 
             Booking booking = bookingMapper.bookingUpsertRequestToBooking(request);
             Booking save = bookingRepository.save(booking);
+
+            kafkaService.sendMessageToKafkaWithTopicName(save);
 
             return bookingMapper.bookingToBookingResponse(save);
         }

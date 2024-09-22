@@ -9,10 +9,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "users")
-public class User {
+@Document(collection = "bookings")
+public class BookingData {
+
     @Id
     private String id;
     private Long userId;
+    private String checkInDate;
+    private String checkOutDate;
 
 }
