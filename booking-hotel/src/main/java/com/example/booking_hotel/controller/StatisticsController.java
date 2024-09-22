@@ -19,4 +19,9 @@ public class StatisticsController {
         return statisticsService.getUsersStatistics();
     }
 
+    @GetMapping("/booking")
+    public ResponseEntity<byte[]> getBookings() {
+        return statisticsService.getBookingsStatistics();
+    }
+
 }
